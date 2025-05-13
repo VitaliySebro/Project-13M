@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <main>
+    <h1>Ваш кошик</h1>
+
+    {% if cart_items %}
+      <ul class="cart-items">
+        {% for item in cart_items %}
+          <li>{{ item.name }} — {{ item.quantity }} шт. — {{ item.total_price }} грн</li>
+        {% endfor %}
+      </ul>
+      <p><strong>Сума: {{ total_sum }} грн</strong></p>
+      <button>Оформити замовлення</button>
+    {% else %}
+      <p>Ваш кошик порожній.</p>
+    {% endif %}
+  </main>
+</div>
+{% endblock %}

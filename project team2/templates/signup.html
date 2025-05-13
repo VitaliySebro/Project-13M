@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}FineWhisky | Створити акаунт{% endblock%}
+{% block content %}
+
+<main>
+    <h1>Створити акаунт</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div style="color: red;">
+                Будь ласка, виправте наступні помилки:
+                <ul>
+                    {% for field in form %}
+                        {% if field.errors %}
+                            <li>{{ field.label }}: {{ field.errors|striptags }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <label for="{{ form.username.id_for_label }}">Ім’я користувача:</label>
+        {{ form.username }}
+
+        <label for="{{ form.password1.id_for_label }}">Пароль:</label>
+        {{ form.password1 }}
+
+        <label for="{{ form.password2.id_for_label }}">Підтвердження пароля:</label>
+        {{ form.password2 }}
+
+        <button type="submit">Зареєструватись</button>
+        <p>Вже маєте аккаунт? <a href="{% url 'login' %}">Увійти</a></p>
+    </form>
+</main>
+
+{% endblock %}

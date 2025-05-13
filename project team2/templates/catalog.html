@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}FineWhisky | Каталог товарів{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Каталог товарів</h1>
+    <form method="get">
+        <input type="text" name="q" placeholder="Пошук за назвою..." value="{{ query|default:'' }}">
+        <button type="submit">Знайти</button>
+    </form>
+
+    {% if query %}
+        <h3>Результати пошуку для "{{ query }}":</h3>
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                    </div>
+                    <div class="product-details">
+                        <h2>{{ product.name }}</h2>
+                        <p>{{ product.description }}</p>
+                        <p><strong>Ціна:</strong> {{ product.price }} грн</p>
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Додати до кошика</button>
+                        </form>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Нічого не знайдено за запитом "{{ query }}".</p>
+            {% endfor %}
+        </div>
+        <p><a href="{% url 'catalog' %}">Повернутися до каталогу</a></p>
+    {% else %}
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+                    </div>
+                    <div class="product-details">
+                        <h2>{{ product.name }}</h2>
+                        <p>{{ product.description }}</p>
+                        <p><strong>Ціна:</strong> {{ product.price }} грн</p>
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Додати до кошика</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

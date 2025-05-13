@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<section class="hero">
+    <div class="container">
+        <h2>Discover Premium Whisky</h2>
+        <p class="subheading">
+            Explore our curated selection of fine whiskies from around the world. Whether you're a connoisseur or just starting your journey — we have something exceptional for every taste.
+        </p>
+        <a href="{% url 'catalog' %}" class="btn">Browse Catalog</a>
+        <img src="{{ MEDIA_URL }}fone.png" alt="Whisky Lineup" class="hero-image">
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Section heading</h2>
+        <div class="card-grid">
+            <img src="{% static 'images/monkey-shoulder.jpg' %}" class="card-img" alt="Monkey Shoulder">
+            <img src="{% static 'images/black-label.jpg' %}" class="card-img" alt="Black Label">
+            <img src="{% static 'images/whisky-glass.jpg' %}" class="card-img" alt="Whisky Glass">
+        </div>
+    </div>
+</section>
+
+
+<section class="section split">
+    <div class="container split-content">
+        <div class="text">
+            <h2 class="section-title">Section heading</h2>
+            <h3>Subheading</h3>
+            <p>Body text for whatever you'd like to expand on the main point.</p>
+            <h3>Subheading</h3>
+            <p>Body text for whatever you'd like to say. Add main takeaway points, quotes, anecdotes.</p>
+            <h3>Subheading</h3>
+            <p>Body text for whatever you'd like to add more to the main point. It provides details, explanations, and context.</p>
+            <button class="btn">Button</button>
+            <button class="btn btn-secondary">Secondary button</button>
+        </div>
+        <img src="{% static 'images/glass-on-bar.jpg' %}" class="split-img" alt="Whisky glass on bar">
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Section heading</h2>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>“A terrific piece of praise”</p>
+                <span class="name">Name</span>
+                <span class="description">Description</span>
+            </div>
+            <div class="testimonial">
+                <p>“A fantastic bit of feedback”</p>
+                <span class="name">Name</span>
+                <span class="description">Description</span>
+            </div>
+            <div class="testimonial">
+                <p>“A genuinely glowing review”</p>
+                <span class="name">Name</span>
+                <span class="description">Description</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

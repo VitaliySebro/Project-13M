@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}FineWhisky | Відгуки{% endblock %}
+{% block content %}
+
+<main>
+    <h1>Відгуки клієнтів</h1>
+
+    {% if reviews %}
+        {% for review in reviews %}
+        <div class="review">
+            <p><strong>{{ review.user.username }}:</strong> {{ review.text }}</p>
+            <small>Опубліковано: {{ review.created_at }}</small>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Ще немає відгуків.</p>
+    {% endif %}
+
+    <h2>Залишити відгук</h2>
+    {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            <label for="text">Відгук</label>
+            <textarea name="text" id="text" rows="4" required></textarea>
+            <button type="submit">Надіслати</button>
+            <p><a href="{% url 'logout' %}">Вийти з аккаунта</a></p> </form>
+    {% else %}
+        <p>Будь ласка, <a href="{% url 'signup' %}">зареєструйтесь</a> або <a href="{% url 'login' %}">увійдіть</a>, щоб залишити відгук.</p>
+    {% endif %}
+</main>
+
+{% endblock %}
